@@ -1,0 +1,14 @@
+{
+    "name": {
+        "ar": "\u062a\u0635\u0646\u064a\u0641\u0627\u062a \u0645\u0645\u064a\u0632\u0629",
+        "en": "Special_Catgories"
+    },
+    "description": {
+        "ar": "",
+        "en": ""
+    },
+    "author_email": "MahmoudSalah@azzrk.com",
+    "support_url": "https://themiify.com/",
+    "repository": "https://github.com/themiify/tw-special-catgories",
+    "components": []
+}
