@@ -1,0 +1,204 @@
+{
+  "id": "9af106ef-6bc9-4ae4-8bbd-c0a635b87045",
+  "components": [
+    {
+      "title": "Getting Started Guide",
+      "icon": "sicon-rocket",
+      "name": "getting-started-guide",
+      "key": "0a1b2c3d-4e5f-6g7h-8i9j-0k1l2m3n4o5p",
+      "image": "https://cdn.salla.network/images/themes/raed/preview-images/getting-started.png"
+    },
+    {
+      "title": "Basic Inputs",
+      "icon": "sicon-format-text-alt",
+      "name": "basic-inputs",
+      "key": "1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p",
+      "image": "https://cdn.salla.network/images/themes/raed/preview-images/text-input.png",
+      "fields": [
+        {
+          "id": "text",
+          "icon": "sicon-format-text-alt",
+          "type": "string",
+          "label": "Text",
+          "placeholder": "Enter text here...",
+          "format": "text",
+          "required": true,
+          "minLength": 1,
+          "maxLength": 100,
+          "value": "Sample text value"
+        },
+        {
+          "id": "email",
+          "icon": "sicon-mail",
+          "type": "string",
+          "label": "Email Input",
+          "placeholder": "Enter email address...",
+          "format": "email",
+          "required": true,
+          "description": "An email input field with validation",
+          "value": "example@salla.sa"
+        },
+        {
+          "id": "url",
+          "icon": "sicon-link",
+          "type": "string",
+          "label": "URL Input",
+          "placeholder": "Enter website URL...",
+          "format": "url",
+          "required": false,
+          "description": "A URL input field with validation",
+          "value": "https://salla.dev"
+        },
+        {
+          "id": "password",
+          "icon": "sicon-lock",
+          "type": "string",
+          "label": "Password Input",
+          "placeholder": "Enter password...",
+          "format": "password",
+          "hide": true,
+          "required": false
+        },
+        {
+          "id": "textarea",
+          "icon": "sicon-paragraph",
+          "type": "string",
+          "label": "Textarea",
+          "placeholder": "Enter multi-line text here...",
+          "format": "textarea",
+          "required": true,
+          "minLength": 1,
+          "maxLength": 500,
+          "rows": 4,
+          "value": "This is a sample text\nwith multiple lines\nto demonstrate the textarea."
+        },
+        {
+          "id": "number",
+          "icon": "sicon-calculator",
+          "type": "number",
+          "label": "Basic Number",
+          "placeholder": "Enter a number...",
+          "format": "number",
+          "inputType": "number",
+          "required": true,
+          "value": 42
+        },
+        {
+          "id": "float",
+          "icon": "sicon-calculator",
+          "type": "number",
+          "label": "Float Number",
+          "placeholder": "Enter a decimal number...",
+          "format": "float",
+          "inputType": "number",
+          "required": false,
+          "step": 0.1,
+          "value": 3.14
+        },
+        {
+          "id": "units",
+          "icon": "sicon-tag",
+          "type": "number",
+          "label": "Units",
+          "placeholder": "Enter units...",
+          "format": "units",
+          "required": true,
+          "step": 0.5,
+          "unit": "kg",
+          "value": 1
+        },
+        {
+          "id": "slider",
+          "type": "number",
+          "label": "Slider",
+          "format": "slider",
+          "inputType": "range",
+          "required": false,
+          "minimum": 0,
+          "maximum": 100,
+          "step": 1,
+          "value": 75
+        },
+        {
+          "id": "checkbox",
+          "icon": "sicon-check-circle",
+          "type": "boolean",
+          "label": "Checkbox",
+          "format": "checkbox",
+          "required": true,
+          "description": "Enable or disable this feature",
+          "value": true
+        },
+        {
+          "id": "switch",
+          "icon": "sicon-bell",
+          "type": "boolean",
+          "label": "Switch",
+          "format": "switch",
+          "required": false,
+          "description": "Enable notifications",
+          "value": false
+        }
+      ]
+    },
+    {
+      "title": "جدول محتوى بسيط",
+      "icon": "sicon-layout-grid-rearrange",
+      "name": "table-list",
+      "image": "https://cdn.salla.network/images/themes/raed/main-links-with-bg.jpg",
+      "key": "9f8e7d6c-5b4a-3c2d-1e0f-a9b8c7d6e5f4",
+      "fields": [
+        {
+          "id": "items",
+          "type": "collection",
+          "format": "collection",
+          "required": true,
+          "minLength": 1,
+          "maxLength": 100,
+          "item_label": "صفوف الجدول",
+          "value": [
+            {
+              "title": "Featured Products",
+              "description": "Our best-selling items with special discounts"
+            },
+            {
+              "title": "New Arrivals",
+              "description": "Latest additions to our collection"
+            },
+            {
+              "title": "Special Offers",
+              "description": "Limited-time deals and promotions"
+            }
+          ],
+          "fields": [
+            {
+              "type": "string",
+              "icon": "sicon-format-text-alt",
+              "id": "title",
+              "required": true,
+              "format": "text",
+              "placeholder": "أدخل عنوان الصف هنا...",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            {
+              "type": "string",
+              "icon": "sicon-format-text-alt",
+              "id": "description",
+              "format": "textarea",
+              "placeholder": "أدخل وصف الصف هنا...",
+              "maxLength": 1000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "رجوع للأعلى",
+      "icon": "sicon-arrow-up",
+      "name": "scroll-top",
+      "key": "8c7b6a5d-4e3f-2g1h-0i9j-8k7l6m5n4o3p",
+      "image": "https://cdn.salla.network/images/themes/raed/preview-images/main-links-with-bg.jpg"
+    }
+  ]
+}

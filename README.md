@@ -1,220 +1,150 @@
-# Special_Catgories
+# Salla Twilight Component Starter
 
+Starter setup for developing custom **Salla Twilight Components** using **Lit** and **Vite**.
 
+## Requirements
 
-This starter kit provides a foundation for building custom Twilight components for Salla's e-commerce platform. It includes a pre-configured build setup and development environment to help you get started quickly.
+* Node.js
+* pnpm
+* Salla Twilight Bundles
 
-## Getting Started
+## Setup
 
-1. Clone this repository
-2. Remove the example components in `src/components/` using:
-   ```
-   tw-delete-component
-   ```
-3. Create your own components using the component generator:
-   ```
-   tw-create-component <component-name>
-   ```
-4. Run `pnpm install` to install dependencies
-5. Run `pnpm run dev` to start the development server
-6. Run `pnpm run build` to build your components for production
+### 1. Install Dependencies
+
+```bash
+pnpm run install-deps
+```
+
+### 2. Initialize Twilight Starter Kit
+
+```bash
+pnpm run tw-init
+```
+
+### 3. Apply Windows Fix
+
+إذا كنت تعمل على Windows وظهر `404` عند تحميل الـ component:
+
+```bash
+pnpm run fix-twilight
+```
+
+هذا الأمر يصلح مشكلة `/@fs` path داخل `sallaDemoPlugin`.
+
+### 4. Start Development Server
+
+```bash
+pnpm run dev
+```
+
+ثم افتح:
+
+```text
+http://localhost:5176/
+```
+
+## Available Scripts
+
+| Command                 | Description                         |
+| ----------------------- | ----------------------------------- |
+| `pnpm run install-deps` | Install project dependencies        |
+| `pnpm run tw-init`      | Initialize the Twilight Starter Kit |
+| `pnpm run fix-twilight` | Apply Windows `/@fs` path fix       |
+| `pnpm run dev`          | Start Vite development server       |
+| `pnpm run build`        | Build the project                   |
+| `pnpm run preview`      | Preview the production build        |
 
 ## Project Structure
 
-```
-src/
-  components/
-    your-component-name/
-      index.ts        # Main component file
-      styles.ts       # Component styles (optional)
-      types.ts        # Component types (optional)
-```
-
-## Built-in Plugins
-
-This starter kit includes three Vite plugins that handle the build process:
-
-### 1. Transform Plugin (`sallaTransformPlugin`)
-- Transforms component files to ensure proper naming and registration
-- Matches components in `src/components/*/index.ts`
-- To disable: Remove from `vite.config.ts` plugins array
-
-### 2. Build Plugin (`sallaBuildPlugin`)
-- Handles component bundling and output
-- Creates individual files for each component in `dist/`
-- Configures external dependencies (lit libraries)
-- To customize: Remove from plugins array and configure your own build settings:
-  ```typescript
-  {
-    build: {
-      lib: {
-        entry: {/* your entries */},
-        formats: ['es'],
-        fileName: (format, entryName) => `${entryName}.js`
-      },
-      rollupOptions: {
-        external: [/^lit/],
-        output: {/* your output config */}
-      }
-    }
-  }
-  ```
-
-### 3. Demo Plugin (`sallaDemoPlugin`)
-- Provides a development environment for testing components
-- Creates a demo page with your components
-- Configures hot module reloading
-- To disable: Remove from plugins array and set up your own dev server
-
-### Demo Plugin Options
-
-The `sallaDemoPlugin` accepts the following configuration options:
-
-```typescript
-{
-  // Optional: Show only specific components
-  components?: string[];
-
-  // Optional: Customize the demo grid layout
-  grid?: {
-    // CSS grid-template-columns value
-    columns?: string;     // default: 'repeat(auto-fill, minmax(300px, 1fr))'
-    
-    // Gap between components
-    gap?: string;        // default: '1rem'
-    
-    // Responsive breakpoint
-    minWidth?: string;   // default: '300px'
-  };
-
-  // Optional: Add custom CSS
-  css?: string;
-
-  // Optional: Add custom JavaScript
-  js?: string;
-}
+```text
+tw-test-fmf/
+├── src/
+│   └── components/
+│       └── first-component/
+│           └── index.ts
+├── templates/
+├── scripts/
+│   └── fix-twilight.js
+├── twilight-bundle.json
+├── vite.config.ts
+├── tsconfig.json
+├── package.json
+└── README.md
 ```
 
-#### Example Configuration
+## Creating a Component
 
-```typescript
-// vite.config.ts
-export default defineConfig({
-  plugins: [
-    // ... other plugins
-    sallaDemoPlugin({
-      // Show only specific components
-      components: ['product-card', 'scroll-top'],
-      
-      // Customize grid layout
-      grid: {
-        columns: 'repeat(3, 1fr)',
-        gap: '1.5rem',
-        minWidth: '768px'
-      },
+Components are located inside:
 
-      // Add custom styles
-      css: `
-        .component-card {
-          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-          transition: transform 0.2s;
-        }
-        .component-card:hover {
-          transform: translateY(-2px);
-        }
-      `,
-
-      // Add custom JavaScript
-      js: `
-        console.log('Demo page loaded!');
-        // Add your custom JavaScript here
-      `
-    })
-  ]
-});
+```text
+src/components/<component-name>/index.ts
 ```
-
-## Component Management
-
-### Creating New Components
-
-This starter kit includes a component generator to help you create new components quickly. To use it, run:
-
-```bash
-pnpm tw-create-component <component-name>
-```
-
-Or run without arguments for interactive mode:
-
-```bash
-pnpm tw-create-component
-```
-
-The generator will:
-1. Prompt you for a component name (in kebab-case format)
-2. Validate that the name is in kebab-case and doesn't already exist
-3. Create a new component folder with an `index.ts` file
-4. Add the component definition to `twilight-bundle.json`
-
-### Deleting Components
-
-To remove a component, use:
-
-```bash
-pnpm tw-delete-component <component-name>
-```
-
-Or run without arguments to see a list of available components:
-
-```bash
-pnpm tw-delete-component
-```
-
-This will:
-1. Show a list of available components to select from
-2. Ask for confirmation before deletion
-3. Remove the component folder from `src/components/`
-4. Remove the component definition from `twilight-bundle.json`
-
-## Component Requirements
-
-Each component should:
-1. Be a class that extends `LitElement`
-2. Export the class as default
-3. Be placed in its own directory under `src/components/`
-4. Have an `index.ts` as the entry point
 
 Example:
-```typescript
-import { css, html, LitElement } from 'lit';
-import { property } from 'lit/decorators.js';
 
-export default class MyComponent extends LitElement {
-  @property({ type: Object })
-  config?: {
-    name: string;
-    //... other properties
-  };
+```ts
+import { html, LitElement } from 'lit';
 
-  static styles = css`/* your styles */`;
-
+export default class FirstComponent extends LitElement {
   render() {
-    return html`<div>Hello ${this.config?.name || 'World'}!</div>`;
+    return html`
+      <div>
+        Hello Salla
+      </div>
+    `;
   }
 }
 ```
 
-## Building for Production
+## Windows 404 Fix
 
-Run `pnpm run build` to create production-ready bundles in the `dist/` directory. Each component will have its own file named after the component (e.g., `my-component.js`).
+The Twilight demo plugin may generate an incorrect Vite filesystem URL on Windows.
 
-## Development
+### Before
 
-Run `pnpm run dev` to start the development server. This will:
-1. Create a demo page with all your components
-2. Enable hot module reloading
-3. Provide a development environment for testing
+```js
+const I = `/@fs${_}`
+```
 
-## License
+### After
 
-MIT
+```js
+const I = `/@fs/${_}`
+```
+
+The fix is applied automatically by:
+
+```bash
+pnpm run fix-twilight
+```
+
+## Development Flow
+
+```text
+Install
+   ↓
+pnpm run install-deps
+   ↓
+Initialize
+   ↓
+pnpm run tw-init
+   ↓
+Windows Fix
+   ↓
+pnpm run fix-twilight
+   ↓
+Development
+   ↓
+pnpm run dev
+   ↓
+Twilight Component Demo
+```
+
+## Tech Stack
+
+* Salla Twilight
+* Lit
+* Vite
+* TypeScript
+* pnpm

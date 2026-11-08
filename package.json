@@ -6,11 +6,20 @@
     "scripts": {
         "dev": "vite",
         "build": "vite build",
-        "preview": "vite preview"
+        "format": "prettier --write \"src/**/*.{ts,html,css}\"",
+        "preview": "vite preview",
+        "install-deps": "pnpm i",
+        "tw-init": "pnpm exec tw-init",
+        "fix-twilight": "node scripts/fix-twilight.js"
     },
     "devDependencies": {
         "@salla.sa/twilight-bundles": "^0.1.0",
+        "typescript": "^5.7.3",
         "vite": "^5.0.0"
+    },
+    "dependencies": {
+        "@salla.sa/twilight-bundles-starter-kit": "^0.1.58",
+        "lit": "^3.2.1"
     },
     "author": "MahmoudSalah@azzrk.com",
     "repository": {
