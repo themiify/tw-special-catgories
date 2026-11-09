@@ -6,11 +6,11 @@
  */
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
+import { fileURLToPath } from 'url';    
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
-const targets = [
+const targets = [     
   path.join(projectRoot, 'node_modules/@salla.sa/twilight-bundles/dist/vite-plugins/demo.js'),
   path.join(projectRoot, 'node_modules/@salla.sa/twilight-bundles/dist/vite-plugins/demo.cjs'),
   path.join(projectRoot, 'node_modules/@salla.sa/twilight-bundles/dist/vite-plugins/_demo.js'),
