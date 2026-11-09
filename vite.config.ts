@@ -33,6 +33,9 @@ function buildDemoSeedScript(): string {
       const json = JSON.stringify(data);
       return [
         `try {`,
+        `localStorage.removeItem('salla_demo_custom_js');`,
+        `localStorage.removeItem('salla::salla_demo_custom_js');`,
+        `if (window.twilightDemoOptions) { window.twilightDemoOptions.js = ''; }`,
         `if (!localStorage.getItem('form-builder::data_${component.name}')) {`,
         `localStorage.setItem('form-builder::data_${component.name}', ${JSON.stringify(json)});`,
         `}`,
@@ -55,18 +58,5 @@ export default defineConfig({
       // Uncomment to preview only specific components
       // components: ['special-categories'],
     }),
-    {
-      name: 'root-redirect',
-      configureServer(server) {
-        server.middlewares.use((req, res, next) => {
-          if (req.url === '/' || req.url === '') {
-            res.writeHead(302, { Location: '/node_modules/.salla-temp/index.html' });
-            res.end();
-            return;
-          }
-          next();
-        });
-      },
-    },
   ],
 });

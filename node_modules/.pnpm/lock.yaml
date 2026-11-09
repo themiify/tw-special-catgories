@@ -15,6 +15,9 @@ importers:
         specifier: ^3.2.1
         version: 3.3.3
     devDependencies:
+      '@rollup/rollup-win32-x64-msvc':
+        specifier: ^4.68.0
+        version: 4.68.0
       '@salla.sa/twilight-bundles':
         specifier: ^0.1.0
         version: 0.1.64
@@ -314,6 +317,11 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  '@rollup/rollup-win32-x64-msvc@4.68.0':
+    resolution: {integrity: sha512-e/NRJFl48wL5DFNSzQrvm4kaB5dzNNmqWjIJ6And2Sjuw4klO3w3TXMvCAEF1tHTrQQgpOD4QVkBE/92/yBGrQ==}
+    cpu: [x64]
+    os: [win32]
+
   '@salla.sa/twilight-bundles-starter-kit@0.1.58':
     resolution: {integrity: sha512-XrKIhd29GZtScasy2Fb/kM0zZozK0GIqO4VOEFiQfOyMo5lkGAp9McEA4Su0MIZlp4FZWtK+OFOHOxOYWv9Y/w==}
     engines: {node: '>=16.0.0', pnpm: '>=9.0.0'}
@@ -563,6 +571,8 @@ snapshots:
 
   '@rollup/rollup-win32-x64-msvc@4.67.5':
     optional: true
+
+  '@rollup/rollup-win32-x64-msvc@4.68.0': {}
 
   '@salla.sa/twilight-bundles-starter-kit@0.1.58':
     dependencies:

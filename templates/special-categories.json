@@ -1,0 +1,572 @@
+{
+  "id": "980d3896-6213-490e-a785-32c1d0d3efdd",
+  "components": [
+    {
+      "title": "تصنيفات مميزة",
+      "icon": "sicon-layout-grid",
+      "name": "special-categories",
+      "key": "7c1f2a4d-9b3e-4c8a-a6d1-0e5b9c3f8a21",
+      "image": "https://cdn.salla.network/images/themes/default/placeholder.jpg",
+      "fields": [
+        {
+          "id": "slides_per_view",
+          "icon": "sicon-calculator",
+          "type": "number",
+          "label": "عدد اللوحات على الشاشات الكبيرة",
+          "format": "slider",
+          "inputType": "range",
+          "required": false,
+          "minimum": 1,
+          "maximum": 3,
+          "step": 1,
+          "value": 2
+        },
+        {
+          "id": "gap",
+          "icon": "sicon-tag",
+          "type": "number",
+          "label": "المسافة بين اللوحات",
+          "format": "units",
+          "required": false,
+          "step": 1,
+          "unit": "px",
+          "value": 8
+        },
+        {
+          "id": "show_arrows",
+          "icon": "sicon-check-circle",
+          "type": "boolean",
+          "label": "إظهار أسهم التنقل",
+          "format": "switch",
+          "required": false,
+          "value": true
+        },
+        {
+          "id": "show_dots",
+          "icon": "sicon-dot",
+          "type": "boolean",
+          "label": "إظهار نقاط التبديل (Pagination)",
+          "format": "switch",
+          "required": false,
+          "value": true
+        },
+        {
+          "id": "disable_hover",
+          "icon": "sicon-star",
+          "type": "boolean",
+          "label": "إلغاء تفعيل تأثير التمرير (Hover)",
+          "format": "switch",
+          "required": false,
+          "value": false
+        },
+        {
+          "id": "enable_custom_height",
+          "icon": "sicon-calculator",
+          "type": "boolean",
+          "label": "تحديد ارتفاع يدوي للوحات (عند الإيقاف تأخذ اللوحة كامل ارتفاع الشاشة)",
+          "format": "switch",
+          "required": false,
+          "value": false
+        },
+        {
+          "id": "panel_min_height",
+          "icon": "sicon-calculator",
+          "type": "number",
+          "label": "الارتفاع الأدنى للوحة على الشاشات الكبيرة",
+          "format": "units",
+          "required": false,
+          "step": 1,
+          "unit": "vh",
+          "minimum": 30,
+          "maximum": 100,
+          "value": 80,
+          "conditions": [
+            {
+              "id": "enable_custom_height",
+              "operation": "=",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "panel_min_height_mobile",
+          "icon": "sicon-calculator",
+          "type": "number",
+          "label": "الارتفاع الأدنى للوحة على الجوال",
+          "format": "units",
+          "required": false,
+          "step": 1,
+          "unit": "vh",
+          "minimum": 30,
+          "maximum": 100,
+          "value": 70,
+          "conditions": [
+            {
+              "id": "enable_custom_height",
+              "operation": "=",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "image_cover",
+          "icon": "sicon-image-landscape",
+          "type": "boolean",
+          "label": "ملء الصورة بالكامل (Cover مع قص) — عند الإيقاف تظهر الصورة كاملة (Contain)",
+          "format": "switch",
+          "required": false,
+          "value": false
+        },
+        {
+          "id": "title_size",
+          "icon": "sicon-format-text-alt",
+          "type": "number",
+          "label": "حجم خط العنوان",
+          "format": "slider",
+          "inputType": "range",
+          "required": false,
+          "minimum": 16,
+          "maximum": 64,
+          "step": 1,
+          "value": 36
+        },
+        {
+          "id": "overlay_opacity",
+          "icon": "sicon-color-palette",
+          "type": "number",
+          "label": "شفافية الطبقة الداكنة فوق الخلفية",
+          "format": "slider",
+          "inputType": "range",
+          "required": false,
+          "minimum": 0,
+          "maximum": 100,
+          "step": 5,
+          "value": 50
+        },
+        {
+          "id": "section_bg_color",
+          "icon": "sicon-color-palette",
+          "type": "string",
+          "format": "color",
+          "inputType": "color",
+          "label": "لون خلفية القسم",
+          "required": false,
+          "value": "#ffffff"
+        },
+        {
+          "id": "section_padding_top",
+          "icon": "sicon-tag",
+          "type": "number",
+          "label": "المسافة من الأعلى",
+          "format": "units",
+          "required": false,
+          "step": 4,
+          "unit": "px",
+          "value": 0
+        },
+        {
+          "id": "section_padding_bottom",
+          "icon": "sicon-tag",
+          "type": "number",
+          "label": "المسافة من الأسفل",
+          "format": "units",
+          "required": false,
+          "step": 4,
+          "unit": "px",
+          "value": 0
+        },
+        {
+          "id": "text_color",
+          "icon": "sicon-color-palette",
+          "type": "string",
+          "format": "color",
+          "inputType": "color",
+          "label": "لون النصوص والعناوين",
+          "required": false,
+          "value": "#1A1A1A"
+        },
+        {
+          "id": "highlight_color",
+          "icon": "sicon-color-palette",
+          "type": "string",
+          "format": "color",
+          "inputType": "color",
+          "label": "لون الكلمات المميزة في العنوان",
+          "required": false,
+          "value": "#C9A227"
+        },
+        {
+          "id": "button_bg",
+          "icon": "sicon-color-palette",
+          "type": "string",
+          "format": "color",
+          "inputType": "color",
+          "label": "خلفية الزر",
+          "required": false,
+          "value": "#FFFFFF"
+        },
+        {
+          "id": "button_text_color",
+          "icon": "sicon-color-palette",
+          "type": "string",
+          "format": "color",
+          "inputType": "color",
+          "label": "نص الزر",
+          "required": false,
+          "value": "#111111"
+        },
+        {
+          "id": "badge_bg",
+          "icon": "sicon-color-palette",
+          "type": "string",
+          "format": "color",
+          "inputType": "color",
+          "label": "خلفية شارة المميزات",
+          "required": false,
+          "value": "#FFFFFF"
+        },
+        {
+          "id": "badge_text_color",
+          "icon": "sicon-color-palette",
+          "type": "string",
+          "format": "color",
+          "inputType": "color",
+          "label": "نص شارة المميزات",
+          "required": false,
+          "value": "#2B2B2B"
+        },
+        {
+          "id": "badge_icon_color",
+          "icon": "sicon-color-palette",
+          "type": "string",
+          "format": "color",
+          "inputType": "color",
+          "label": "لون أيقونة شارة المميزات",
+          "required": false,
+          "value": "#2B2B2B"
+        },
+        {
+          "id": "panels",
+          "type": "collection",
+          "format": "collection",
+          "label": "اللوحات",
+          "item_label": "لوحة",
+          "required": true,
+          "minLength": 1,
+          "maxLength": 10,
+          "value": [
+            {
+              "title": "أزياء رجالية",
+              "highlighted_words": "",
+              "subheading": "أناقة تليق بك",
+              "button_text": "تصفّح التشكيلة",
+              "button_url": "",
+              "bg_color": "#F5F5F5",
+              "bg_image": "",
+              "bg_image_hover": "",
+              "main_image": "https://cdn.files.salla.network/other/1637672648/de559630-97de-468e-80f2-cf785f63b744-original.png",
+              "main_image_hover": "https://cdn.files.salla.network/other/1637672648/ae67720b-549a-4c0e-86e9-d72708796b0a-original.png",
+              "highlight_1_title": "إطلالة مريحة",
+              "highlight_1_icon": "https://cdn.files.salla.network/other/1637672648/bf7b46d9-895a-4108-bac0-3bccf53b05fc-original.png",
+              "highlight_1_url": "",
+              "highlight_2_title": "خامات ناعمة",
+              "highlight_2_icon": "https://cdn.files.salla.network/other/1637672648/8663f20b-f68c-4764-be6e-12c4c9cb2f3b-original.png",
+              "highlight_2_url": "",
+              "highlight_3_title": "أسلوبك الخاص",
+              "highlight_3_icon": "https://cdn.files.salla.network/other/1637672648/4de0eef7-97e7-4d38-bd1c-ac87a6de2921-original.png",
+              "highlight_3_url": "",
+              "highlight_4_title": "متاح بمقاسات",
+              "highlight_4_icon": "https://cdn.files.salla.network/other/1637672648/5e7d69a4-22a2-4703-8471-61af9640d736-original.png",
+              "highlight_4_url": "",
+              "highlight_5_title": "أفكار للتنسيقات",
+              "highlight_5_icon": "https://cdn.files.salla.network/other/1637672648/19635aad-b02f-44c7-ba26-1b3d934ac466-original.png",
+              "highlight_5_url": ""
+            },
+            {
+              "title": "أزياء نسائية",
+              "highlighted_words": "",
+              "subheading": "إطلالات أنيقة",
+              "button_text": "تصفّح التشكيلة",
+              "button_url": "",
+              "bg_color": "#E5EBED",
+              "bg_image": "",
+              "bg_image_hover": "",
+              "main_image": "https://cdn.files.salla.network/other/1637672648/1f33266a-fdb1-4a60-942b-73bc219b76dd-original.png",
+              "main_image_hover": "https://cdn.files.salla.network/other/1637672648/af59b99e-778a-4d1b-bd96-9ac22f82c72d-original.png",
+              "highlight_1_title": "تناسب جميع المناسبات",
+              "highlight_1_icon": "https://cdn.files.salla.network/other/1637672648/01803b95-57dc-40ac-b271-a911eb7a8712-original.png",
+              "highlight_1_url": "",
+              "highlight_2_title": "خامات مريحة",
+              "highlight_2_icon": "https://cdn.files.salla.network/other/1637672648/ba2bddf8-34b0-4036-b37d-24fefe3eab34-original.png",
+              "highlight_2_url": "",
+              "highlight_3_title": "تصاميم عصرية",
+              "highlight_3_icon": "https://cdn.files.salla.network/other/1637672648/0db2a9dd-615a-4898-ae7c-3ae0514e78a4-original.png",
+              "highlight_3_url": "",
+              "highlight_4_title": "متاح بعدة مقاسات",
+              "highlight_4_icon": "https://cdn.files.salla.network/other/1637672648/371fe86d-68fc-4383-adac-a4b95c632f5a-original.png",
+              "highlight_4_url": "",
+              "highlight_5_title": "تنسيقات جاهزة",
+              "highlight_5_icon": "https://cdn.files.salla.network/other/1637672648/8c876546-1dc3-4a42-b211-9a85bc82b39b-original.png",
+              "highlight_5_url": ""
+            }
+          ],
+          "fields": [
+            {
+              "id": "category",
+              "icon": "sicon-folder",
+              "type": "items",
+              "label": "التصنيف (يُستخدم للعنوان والرابط تلقائياً)",
+              "format": "dropdown-list",
+              "source": "categories",
+              "options": [],
+              "selected": [],
+              "required": false,
+              "searchable": true,
+              "multichoice": false
+            },
+            {
+              "id": "title",
+              "icon": "sicon-format-text-alt",
+              "type": "string",
+              "label": "عنوان اللوحة",
+              "format": "text",
+              "multilanguage": true,
+              "required": false,
+              "placeholder": "مثال: Shop Men",
+              "maxLength": 80
+            },
+            {
+              "id": "highlighted_words",
+              "icon": "sicon-format-text-alt",
+              "type": "string",
+              "label": "الكلمات المميزة بلون مختلف في العنوان (افصل بينها بفاصلة)",
+              "format": "text",
+              "required": false,
+              "placeholder": "مثال: Men, Women"
+            },
+            {
+              "id": "subheading",
+              "icon": "sicon-format-text-alt",
+              "type": "string",
+              "label": "النص العلوي الصغير",
+              "format": "text",
+              "multilanguage": true,
+              "required": false,
+              "maxLength": 120
+            },
+            {
+              "id": "button_text",
+              "icon": "sicon-link",
+              "type": "string",
+              "label": "نص الزر",
+              "format": "text",
+              "multilanguage": true,
+              "required": false,
+              "maxLength": 60
+            },
+            {
+              "id": "button_url",
+              "icon": "sicon-link",
+              "type": "string",
+              "format": "text",
+              "label": "رابط الزر (اختياري)",
+              "placeholder": "مثال: /categories/123 أو https://...",
+              "required": false
+            },
+            {
+              "id": "bg_color",
+              "icon": "sicon-color-palette",
+              "type": "string",
+              "format": "color",
+              "inputType": "color",
+              "label": "لون خلفية اللوحة (يظهر كخلفية أو عند عدم وجود صورة)",
+              "required": false,
+              "value": "#E5EBED"
+            },
+            {
+              "id": "bg_image",
+              "icon": "sicon-image-landscape",
+              "type": "string",
+              "format": "image",
+              "label": "صورة الخلفية (اختياري)",
+              "required": false
+            },
+            {
+              "id": "bg_image_hover",
+              "icon": "sicon-image-landscape",
+              "type": "string",
+              "format": "image",
+              "label": "صورة الخلفية عند التمرير Hover",
+              "required": false,
+              "conditions": [
+                {
+                  "id": "disable_hover",
+                  "operation": "=",
+                  "value": false
+                }
+              ]
+            },
+            {
+              "id": "main_image",
+              "icon": "sicon-image-landscape",
+              "type": "string",
+              "format": "image",
+              "label": "الصورة الرئيسية",
+              "required": false
+            },
+            {
+              "id": "main_image_hover",
+              "icon": "sicon-image-landscape",
+              "type": "string",
+              "format": "image",
+              "label": "الصورة الرئيسية عند التمرير Hover",
+              "required": false,
+              "conditions": [
+                {
+                  "id": "disable_hover",
+                  "operation": "=",
+                  "value": false
+                }
+              ]
+            },
+            {
+              "id": "highlight_1_title",
+              "icon": "sicon-format-text-alt",
+              "type": "string",
+              "label": "اسم الميزة 1",
+              "format": "text",
+              "multilanguage": true,
+              "required": false,
+              "maxLength": 60
+            },
+            {
+              "id": "highlight_1_icon",
+              "icon": "sicon-image-landscape",
+              "type": "string",
+              "format": "image",
+              "label": "أيقونة الميزة 1 (SVG/PNG)",
+              "required": false
+            },
+            {
+              "id": "highlight_1_url",
+              "icon": "sicon-link",
+              "type": "string",
+              "format": "text",
+              "label": "رابط الميزة 1 (اختياري)",
+              "placeholder": "مثال: /products/123 أو https://...",
+              "required": false
+            },
+            {
+              "id": "highlight_2_title",
+              "icon": "sicon-format-text-alt",
+              "type": "string",
+              "label": "اسم الميزة 2",
+              "format": "text",
+              "multilanguage": true,
+              "required": false,
+              "maxLength": 60
+            },
+            {
+              "id": "highlight_2_icon",
+              "icon": "sicon-image-landscape",
+              "type": "string",
+              "format": "image",
+              "label": "أيقونة الميزة 2 (SVG/PNG)",
+              "required": false
+            },
+            {
+              "id": "highlight_2_url",
+              "icon": "sicon-link",
+              "type": "string",
+              "format": "text",
+              "label": "رابط الميزة 2 (اختياري)",
+              "placeholder": "مثال: /products/123 أو https://...",
+              "required": false
+            },
+            {
+              "id": "highlight_3_title",
+              "icon": "sicon-format-text-alt",
+              "type": "string",
+              "label": "اسم الميزة 3",
+              "format": "text",
+              "multilanguage": true,
+              "required": false,
+              "maxLength": 60
+            },
+            {
+              "id": "highlight_3_icon",
+              "icon": "sicon-image-landscape",
+              "type": "string",
+              "format": "image",
+              "label": "أيقونة الميزة 3 (SVG/PNG)",
+              "required": false
+            },
+            {
+              "id": "highlight_3_url",
+              "icon": "sicon-link",
+              "type": "string",
+              "format": "text",
+              "label": "رابط الميزة 3 (اختياري)",
+              "placeholder": "مثال: /products/123 أو https://...",
+              "required": false
+            },
+            {
+              "id": "highlight_4_title",
+              "icon": "sicon-format-text-alt",
+              "type": "string",
+              "label": "اسم الميزة 4",
+              "format": "text",
+              "multilanguage": true,
+              "required": false,
+              "maxLength": 60
+            },
+            {
+              "id": "highlight_4_icon",
+              "icon": "sicon-image-landscape",
+              "type": "string",
+              "format": "image",
+              "label": "أيقونة الميزة 4 (SVG/PNG)",
+              "required": false
+            },
+            {
+              "id": "highlight_4_url",
+              "icon": "sicon-link",
+              "type": "string",
+              "format": "text",
+              "label": "رابط الميزة 4 (اختياري)",
+              "placeholder": "مثال: /products/123 أو https://...",
+              "required": false
+            },
+            {
+              "id": "highlight_5_title",
+              "icon": "sicon-format-text-alt",
+              "type": "string",
+              "label": "اسم الميزة 5",
+              "format": "text",
+              "multilanguage": true,
+              "required": false,
+              "maxLength": 60
+            },
+            {
+              "id": "highlight_5_icon",
+              "icon": "sicon-image-landscape",
+              "type": "string",
+              "format": "image",
+              "label": "أيقونة الميزة 5 (SVG/PNG)",
+              "required": false
+            },
+            {
+              "id": "highlight_5_url",
+              "icon": "sicon-link",
+              "type": "string",
+              "format": "text",
+              "label": "رابط الميزة 5 (اختياري)",
+              "placeholder": "مثال: /products/123 أو https://...",
+              "required": false
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,12 +1,6 @@
 #!/usr/bin/env node
 /**
- * Windows and restart fix for @salla.sa/twilight-bundles sallaDemoPlugin.
- *
- * 1. The demo plugin builds Vite filesystem URLs as `/@fs${path}` which breaks on
- *    Windows drive-letter paths (e.g. `/@fsC:\...`). This script patches the
- *    installed plugin to emit `/@fs/${path}` instead.
- * 2. On server restarts, Vite preserves `server.open`, which caused sallaDemoPlugin's
- *    `configResolved` to exit early and fail to regenerate `.salla-temp/index.html`.
+ * Windows fix for @salla.sa/twilight-bundles sallaDemoPlugin.
  *
  * Usage: pnpm run fix-twilight
  */
@@ -19,7 +13,55 @@ const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '
 const targets = [
   path.join(projectRoot, 'node_modules/@salla.sa/twilight-bundles/dist/vite-plugins/demo.js'),
   path.join(projectRoot, 'node_modules/@salla.sa/twilight-bundles/dist/vite-plugins/demo.cjs'),
+  path.join(projectRoot, 'node_modules/@salla.sa/twilight-bundles/dist/vite-plugins/_demo.js'),
+  path.join(projectRoot, 'node_modules/@salla.sa/twilight-bundles/dist/vite-plugins/_demo.cjs'),
 ];
+
+const updatedSchemaMethod = `static schemaForComponent(e, t = !0) {
+    let n = window.customComponentsSchema && window.customComponentsSchema[e];
+    if (n) {
+      try {
+        const fields = JSON.parse(n);
+        const d = localStorage.getItem(\`form-builder::data_\${e}\`);
+        const data = d ? JSON.parse(d) : null;
+        fields.forEach(f => {
+          if (data && (f.id in data)) {
+            if (f.type === 'boolean') {
+              const boolVal = data[f.id] === true || String(data[f.id]).toLowerCase() === 'true' || data[f.id] === 1 || String(data[f.id]) === '1';
+              f.value = boolVal;
+              f.selected = boolVal;
+            } else if (f.type === 'items') {
+              f.value = data[f.id];
+              f.selected = data[f.id];
+            } else if (f.type === 'collection' && Array.isArray(data[f.id])) {
+              f.value = data[f.id].map(item => {
+                if (!item || typeof item !== 'object') return item;
+                const clean = {};
+                for (const [k, v] of Object.entries(item)) {
+                  const shortKey = k.includes('.') ? k.split('.').pop() : k;
+                  if (shortKey.endsWith('__type') && Array.isArray(v)) {
+                    clean[shortKey] = (v[0] && typeof v[0] === 'object' && v[0].value) ? v[0].value : (typeof v[0] === 'string' ? v[0] : 'custom');
+                  } else {
+                    clean[shortKey] = v;
+                  }
+                }
+                return clean;
+              });
+            } else {
+              f.value = data[f.id];
+            }
+          } else if (f.type === 'boolean' && f.selected === undefined) {
+            f.selected = Boolean(f.value);
+          }
+        });
+        n = JSON.stringify(fields);
+      } catch (err) {}
+      const res = this.ensureHiddenComponentField(n, e);
+      return t ? this.htmlSafeString(res) : res;
+    }
+    const a = localStorage.getItem(\`form-builder::\${e}\`), fallback = a ? this.ensureHiddenComponentField(a, e) : "";
+    return t ? this.htmlSafeString(fallback) : fallback;
+  }`;
 
 let patched = 0;
 
@@ -37,9 +79,18 @@ for (const file of targets) {
     changed = true;
   }
 
-  const openCheckRegex = /if\s*\(\([A-Za-z]\s*=\s*t\.server\)\s*!=\s*null\s*&&\s*[A-Za-z]\.open\)\s*return;/g;
-  if (openCheckRegex.test(source)) {
-    source = source.replace(openCheckRegex, '/* bypass open check on restart */');
+  // Restore save-url and upload-url if they were emptied by shell expansion
+  if (source.includes('save-url=""') || source.includes('save-url="/__salla_save"')) {
+    source = source
+      .replace(/save-url="[^"]*"/g, 'save-url="${window.formBuilderMockUrl}"')
+      .replace(/upload-url="[^"]*"/g, 'upload-url="${window.formBuilderMockUrl}/uploader"');
+    changed = true;
+  }
+
+  // Ensure schemaForComponent syncs boolean `selected` and unwraps variable-list `__type` arrays
+  const methodPattern = /static\s+schemaForComponent\s*\([^{]+?\{[\s\S]*?(?=\s*static\s+ensureHiddenComponentField)/;
+  if (methodPattern.test(source) && !source.includes(updatedSchemaMethod)) {
+    source = source.replace(methodPattern, updatedSchemaMethod);
     changed = true;
   }
 

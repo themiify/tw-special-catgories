@@ -13,6 +13,7 @@
         "fix-twilight": "node scripts/fix-twilight.js"
     },
     "devDependencies": {
+        "@rollup/rollup-win32-x64-msvc": "^4.68.0",
         "@salla.sa/twilight-bundles": "^0.1.0",
         "typescript": "^5.7.3",
         "vite": "^5.0.0"
