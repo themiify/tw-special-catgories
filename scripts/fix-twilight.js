@@ -1,10 +1,12 @@
 #!/usr/bin/env node
 /**
- * Windows fix for @salla.sa/twilight-bundles sallaDemoPlugin.
+ * Windows and restart fix for @salla.sa/twilight-bundles sallaDemoPlugin.
  *
- * The demo plugin builds Vite filesystem URLs as `/@fs${path}` which breaks on
- * Windows drive-letter paths (e.g. `/@fsC:\...`). This script patches the
- * installed plugin to emit `/@fs/${path}` instead.
+ * 1. The demo plugin builds Vite filesystem URLs as `/@fs${path}` which breaks on
+ *    Windows drive-letter paths (e.g. `/@fsC:\...`). This script patches the
+ *    installed plugin to emit `/@fs/${path}` instead.
+ * 2. On server restarts, Vite preserves `server.open`, which caused sallaDemoPlugin's
+ *    `configResolved` to exit early and fail to regenerate `.salla-temp/index.html`.
  *
  * Usage: pnpm run fix-twilight
  */
@@ -27,17 +29,27 @@ for (const file of targets) {
     continue;
   }
 
-  const source = fs.readFileSync(file, 'utf8');
+  let source = fs.readFileSync(file, 'utf8');
+  let changed = false;
 
-  if (!source.includes('/@fs${')) {
-    console.log(`✅ Already patched or nothing to fix: ${path.basename(file)}`);
-    continue;
+  if (source.includes('/@fs${')) {
+    source = source.replace(/\/@fs\$\{/g, '/@fs/${');
+    changed = true;
   }
 
-  const fixed = source.replace(/\/@fs\$\{/g, '/@fs/${');
-  fs.writeFileSync(file, fixed, 'utf8');
-  patched++;
-  console.log(`✅ Patched: ${path.basename(file)}`);
+  const openCheckRegex = /if\s*\(\([A-Za-z]\s*=\s*t\.server\)\s*!=\s*null\s*&&\s*[A-Za-z]\.open\)\s*return;/g;
+  if (openCheckRegex.test(source)) {
+    source = source.replace(openCheckRegex, '/* bypass open check on restart */');
+    changed = true;
+  }
+
+  if (changed) {
+    fs.writeFileSync(file, source, 'utf8');
+    patched++;
+    console.log(`✅ Patched: ${path.basename(file)}`);
+  } else {
+    console.log(`✅ Already patched or nothing to fix: ${path.basename(file)}`);
+  }
 }
 
 if (patched > 0) {
