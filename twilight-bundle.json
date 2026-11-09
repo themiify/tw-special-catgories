@@ -4,8 +4,8 @@
         "en": "Special_Catgories"
     },
     "description": {
-        "ar": "لوحات تصنيفات تفاعلية — كل البيانات والإعدادات تأتي من JSON التويلت (الحد الأقصى 5 مميزات لكل لوحة)",
-        "en": "Interactive collection panels slider — every piece of data is controlled from the Twilight settings JSON"
+        "ar": null,
+        "en": null
     },
     "author_email": "MahmoudSalah@azzrk.com",
     "support_url": "https://themiify.com/",
