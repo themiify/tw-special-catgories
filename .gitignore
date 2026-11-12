@@ -2,8 +2,8 @@
 node_modules/
 .pnpm-store/
 
-# Production build
-dist/
+# Production build (tracked for Salla Twilight bundle release)
+# dist/
 dist-ssr/
 build/
 
