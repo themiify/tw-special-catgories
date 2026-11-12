@@ -51,6 +51,21 @@ export default defineConfig({
     strictPort: true,
   },
   plugins: [
+    {
+      name: 'root-redirect-to-demo',
+      configureServer(server) {
+        server.middlewares.use((req, res, next) => {
+          const url = (req.url || '').split('?')[0];
+          if (url === '/' || url === '/index.html') {
+            const query = (req.url || '').includes('?') ? req.url?.slice(req.url.indexOf('?')) : '';
+            res.writeHead(302, { Location: `/node_modules/.salla-temp/index.html${query}` });
+            res.end();
+            return;
+          }
+          next();
+        });
+      },
+    },
     sallaTransformPlugin(),
     sallaBuildPlugin(),
     sallaDemoPlugin({
